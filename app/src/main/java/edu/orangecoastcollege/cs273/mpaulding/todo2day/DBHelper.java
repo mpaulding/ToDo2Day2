@@ -12,7 +12,7 @@ class DBHelper extends SQLiteOpenHelper {
 
     //TASK 1: DEFINE THE DATABASE VERSION, NAME AND TABLE NAME
     private static final String DATABASE_NAME = "ToDo2Day";
-    private static final String DATABASE_TABLE = "tasks";
+    private static final String DATABASE_TABLE = "Tasks";
     private static final int DATABASE_VERSION = 1;
 
 
@@ -43,8 +43,7 @@ class DBHelper extends SQLiteOpenHelper {
         onCreate(database);
     }
 
-    //********** DATABASE OPERATIONS:  ADD, EDIT, DELETE
-
+    //********** DATABASE OPERATIONS:  ADD, GETALL, EDIT, DELETE
 
     public void addTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -69,8 +68,6 @@ class DBHelper extends SQLiteOpenHelper {
 
     public ArrayList<Task> getAllTasks() {
         ArrayList<Task> taskList = new ArrayList<>();
-        String queryList = "SELECT * FROM " + DATABASE_TABLE;
-
         SQLiteDatabase database = this.getReadableDatabase();
         //Cursor cursor = database.rawQuery(queryList, null);
         Cursor cursor = database.query(
@@ -79,7 +76,6 @@ class DBHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null, null, null, null );
-
 
         //COLLECT EACH ROW IN THE TABLE
         if (cursor.moveToFirst()){
@@ -90,7 +86,6 @@ class DBHelper extends SQLiteOpenHelper {
         }
         return taskList;
     }
-
 
     public void deleteTask(Task task){
         SQLiteDatabase db = this.getWritableDatabase();
