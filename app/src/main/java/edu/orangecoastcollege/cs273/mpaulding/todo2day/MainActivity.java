@@ -18,29 +18,22 @@ public class MainActivity extends AppCompatActivity {
         DBHelper database = new DBHelper(this);
 
         //              ADD FIVE TASK ITEMS TO THE DATABASE
-        database.addTask(new Task(
-                1, "Read Hamlet", 1));
-        database.addTask(new Task(
-                2, "Study for exam", 1));
-        database.addTask(new Task(
-                3, "Call Andy and Sam", 0));
-        database.addTask(new Task(
-                4, "Create newsletter", 1));
-        database.addTask(new Task(
-                5, "Buy a dog", 0));
+        database.addTask(new Task(1, "Read Hamlet", 1));
+        database.addTask(new Task(2, "Study for exam", 1));
+        database.addTask(new Task(3, "Call Andy and Sam", 0));
+        database.addTask(new Task(4, "Create newsletter", 1));
+        database.addTask(new Task(5, "Buy a dog", 0));
 
         //            DISPLAY ALL THE TASK ITEMS IN THE TABLE
-        String taskItemList = "\n";
         ArrayList<Task> taskList = database.getAllTasks();
-        for (int i = 0; i < database.getTaskCount(); i++) {
-            Task task = taskList.get(i);
-            taskItemList += "\n" + task.toString();
+        for (Task singleTask : taskList) {
+
+            Log.i("DATABASE RECORDS", singleTask.toString());
         }
-        Log.i("DATABASE RECORDS", taskItemList);
+
 
         // EXPERIMENT 2: MODIFY A RECORD
-        database.editTask(new Task(
-                1, "Read newspaper", 1));
+        database.editTask(new Task(1, "Read newspaper", 1));
 
         //EXPERIMENT 3: DISPLAY A SPECIFIC RECORD
         Task anItem = database.getTask(2);
@@ -51,13 +44,11 @@ public class MainActivity extends AppCompatActivity {
                 15, "Buy a dog", 0));
 
         //              DISPLAY ALL THE TASK ITEMS IN THE TABLE
-        taskItemList = "\n";
+
         taskList = database.getAllTasks();
-        for (int i = 0; i < database.getTaskCount(); i++) {
-            Task task = taskList.get(i);
-            taskItemList += "\n" + task.getDescription() + "\t" +
-                    task.getIsDone();
+        for (Task singleTask : taskList) {
+
+            Log.i("DATABASE RECORDS", singleTask.toString());
         }
-        Log.i("DATABASE RECORDS", taskItemList);
     }
 }

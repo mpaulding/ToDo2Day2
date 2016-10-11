@@ -16,12 +16,11 @@ class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_TABLE = "tasks";
 
 
-    //TASK 2: DEFINE THE COLUMN NAMES FOR THE TABLE
-    private static final String KEY_TASK_ID = "id";
+    //TASK 2: DEFINE THE FIELDS (COLUMN NAMES) FOR THE TABLE
+    private static final String KEY_FIELD_ID = "id";
     private static final String FIELD_DESCRIPTION = "description";
     private static final String FIELD_IS_DONE = "is_done";
 
-    private int taskCount;
 
     public DBHelper (Context context){
         super (context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,11 +29,10 @@ class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate (SQLiteDatabase database){
         String table = "CREATE TABLE " + DATABASE_TABLE + "("
-                + KEY_TASK_ID + " INTEGER PRIMARY KEY, "
+                + KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_DESCRIPTION + " TEXT, "
                 + FIELD_IS_DONE + " INTEGER" + ")";
         database.execSQL (table);
-        taskCount = 0;
     }
 
     @Override
@@ -52,9 +50,8 @@ class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        taskCount++;
         //ADD KEY-VALUE PAIR INFORMATION FOR THE TASK DESCRIPTION
-        values.put(KEY_TASK_ID, taskCount);
+        values.put(KEY_FIELD_ID, task.getId());
 
         //ADD KEY-VALUE PAIR INFORMATION FOR THE TASK DESCRIPTION
         values.put(FIELD_DESCRIPTION, task.getDescription()); // task name
@@ -77,10 +74,8 @@ class DBHelper extends SQLiteOpenHelper {
         values.put(FIELD_DESCRIPTION, task.getDescription());
         values.put(FIELD_IS_DONE, task.getIsDone());
 
-        db.update(DATABASE_TABLE, values, KEY_TASK_ID + " = ?",
-                new String[]{
-                        String.valueOf(task.getId())
-                });
+        db.update(DATABASE_TABLE, values, KEY_FIELD_ID + " = ?",
+                new String[]{String.valueOf(task.getId())});
         db.close();
     }
 
@@ -88,8 +83,8 @@ class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(
                 DATABASE_TABLE,
-                new String[]{KEY_TASK_ID, FIELD_DESCRIPTION, FIELD_IS_DONE},
-                KEY_TASK_ID + "=?",
+                new String[]{KEY_FIELD_ID, FIELD_DESCRIPTION, FIELD_IS_DONE},
+                KEY_FIELD_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null );
 
@@ -105,18 +100,15 @@ class DBHelper extends SQLiteOpenHelper {
     }
 
     public void deleteTask(Task task){
-        SQLiteDatabase database = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
 
         // DELETE THE TABLE ROW
-        database.delete(DATABASE_TABLE, KEY_TASK_ID + " = ?",
-                new String[]
-                        {String.valueOf(task.getId())});
-        database.close();
+        db.delete(DATABASE_TABLE, KEY_FIELD_ID + " = ?",
+                new String[] {String.valueOf(task.getId())});
+        db.close();
     }
 
-    public int getTaskCount() {
-        return taskCount;
-    }
+
 
     public ArrayList<Task> getAllTasks() {
         ArrayList<Task> taskList = new ArrayList<Task>();
