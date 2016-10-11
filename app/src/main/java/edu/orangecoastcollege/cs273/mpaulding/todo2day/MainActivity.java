@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //EXPERIMENT 1: CREATE THE DATABASE
-
+        this.deleteDatabase("ToDo2Day");
         DBHelper database = new DBHelper(this);
 
         //              ADD FIVE TASK ITEMS TO THE DATABASE
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         //EXPERIMENT 4: DELETE A RECORD
         database.deleteTask(new Task(
-                15, "Buy a dog", 0));
+                5, "Buy a dog", 0));
 
         //              DISPLAY ALL THE TASK ITEMS IN THE TABLE
 
