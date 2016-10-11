@@ -95,6 +95,7 @@ class DBHelper extends SQLiteOpenHelper {
                 cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getInt(2));
+        cursor.close();
         db.close();
         return task;
     }
@@ -126,6 +127,7 @@ class DBHelper extends SQLiteOpenHelper {
                 taskList.add(task);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return taskList;
     }
 }
