@@ -46,7 +46,7 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
     @Override
     public View getView(int pos, View convertView, ViewGroup parent)
     {
-        Task selectedTask = mTaskList.get(pos);
+        final Task selectedTask = mTaskList.get(pos);
         LayoutInflater inflater =
                 (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(mResourceId, null);
@@ -54,6 +54,7 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
         mIsDoneCheckBox.setText(selectedTask.getDescription());
         mIsDoneCheckBox.setChecked(selectedTask.getIsDone() == 1 ? true : false);
         mIsDoneCheckBox.setTag(selectedTask);
+
         return view;
     }
 }

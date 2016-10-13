@@ -36,8 +36,8 @@
             android:layout_below="@+id/taskEditText"
             android:layout_centerHorizontal="true"
             android:layout_marginRight="5dp"
-            android:onClick="addTaskNow"
-            android:text="@string/add" />
+            android:text="@string/add"
+            android:onClick="addTask"/>
 
         <Button
             android:id="@+id/clearAllTasksButton"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/addTaskButton"
             android:layout_centerHorizontal="true"
-            android:onClick="clearTasks"
+            android:onClick="clearAllTasks"
             android:text="@string/delete" />
 
     </RelativeLayout>
