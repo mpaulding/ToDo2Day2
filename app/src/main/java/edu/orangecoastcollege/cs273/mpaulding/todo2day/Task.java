@@ -25,6 +25,16 @@ public class Task {
 
     /**
      * Creates a new <code>Task</code> from its id, description and status.
+     * @param desc The task description
+     * @param done The task status
+     */
+    public Task(String desc, int done) {
+        mDescription = desc;
+        mIsDone = done;
+    }
+
+    /**
+     * Creates a new <code>Task</code> from its id, description and status.
      * @param id The task id
      * @param desc The task description
      * @param done The task status

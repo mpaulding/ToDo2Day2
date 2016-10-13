@@ -11,7 +11,7 @@ import java.util.ArrayList;
 class DBHelper extends SQLiteOpenHelper {
 
     //TASK 1: DEFINE THE DATABASE VERSION, NAME AND TABLE NAME
-    private static final String DATABASE_NAME = "ToDo2Day";
+    static final String DATABASE_NAME = "ToDo2Day";
     private static final String DATABASE_TABLE = "Tasks";
     private static final int DATABASE_VERSION = 1;
 
@@ -29,7 +29,7 @@ class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate (SQLiteDatabase database){
         String table = "CREATE TABLE " + DATABASE_TABLE + "("
-                + KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + FIELD_DESCRIPTION + " TEXT, "
                 + FIELD_IS_DONE + " INTEGER" + ")";
         database.execSQL (table);
@@ -48,9 +48,6 @@ class DBHelper extends SQLiteOpenHelper {
     public void addTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-
-        //ADD KEY-VALUE PAIR INFORMATION FOR THE TASK DESCRIPTION
-        values.put(KEY_FIELD_ID, task.getId());
 
         //ADD KEY-VALUE PAIR INFORMATION FOR THE TASK DESCRIPTION
         values.put(FIELD_DESCRIPTION, task.getDescription()); // task name
