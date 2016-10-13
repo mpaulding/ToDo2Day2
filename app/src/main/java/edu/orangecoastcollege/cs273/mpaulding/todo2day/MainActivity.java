@@ -77,6 +77,6 @@ public class MainActivity extends AppCompatActivity {
         CheckBox selectedCheckBox = (CheckBox) view;
         Task selectedTask = (Task) selectedCheckBox.getTag();
         selectedTask.setIsDone(selectedCheckBox.isChecked() ? 1 : 0);
-        database.editTask(selectedTask);
+        database.updateTask(selectedTask);
     }
 }

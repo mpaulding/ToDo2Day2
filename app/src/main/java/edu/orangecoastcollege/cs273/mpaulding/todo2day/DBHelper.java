@@ -100,7 +100,7 @@ class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void editTask(Task task){
+    public void updateTask(Task task){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
