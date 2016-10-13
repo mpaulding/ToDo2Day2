@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         taskListAdapter = new TaskListAdapter(this, R.layout.task_item, taskList);
         taskListView = (ListView) findViewById(R.id.taskListView);
         taskListView.setAdapter(taskListAdapter);
-        taskListView.setAdapter(taskListAdapter);
     }
 
     public void addTask(View view) {
